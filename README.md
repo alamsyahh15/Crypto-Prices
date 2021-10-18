@@ -1,16 +1,19 @@
-# crypto_price
+# Crypto Prices
 
-A new Flutter project.
+[![Fork](https://img.shields.io/github/forks/alamsyahh15/Crypto-Prices?style=social)](https://github.com/alamsyahh15/Crypto-Prices/fork)&nbsp; [![Star](https://img.shields.io/github/stars/alamsyahh15/Crypto-Prices?style=social)](https://github.com/alamsyahh15/Crypto-Prices/star)&nbsp; [![Watches](https://img.shields.io/github/watchers/alamsyahh15/Crypto-Prices?style=social)](https://github.com/alamsyahh15/Crypto-Prices/)&nbsp;
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+<p><img  src="https://i.ibb.co/59cLNmp/cover.png"/>
+<img  src="https://i.imgur.com/JGHM4uM.png"/></p>
 
-A few resources to get you started if this is your first Flutter project:
+CryptoPrices adalah sebuah aplikasi sederhana yang menampilkan daftar harga terupdate asset digital cryptocurrency,dari mulai Bitcoin, Ethereum, Binance, Doge dan lainnya. Serta menampilkan candle stick chart dari interval waktu yang diinginkan.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+### Apps Feature:
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Real Time Price Assets
+- Real Time Gain / Loss Asset 
+- Real Time Candle Stick Chart
+ 
+
+  ### Information
+  1. Anda Membaca collection postman dari CoinCap ini untuk mengcustom <a href="https://docs.coincap.io/#89deffa0-ab03-4e0a-8d92-637a857d2c91">CoinCap Collection</a>
