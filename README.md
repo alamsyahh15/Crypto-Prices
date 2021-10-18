@@ -3,7 +3,7 @@
 [![Fork](https://img.shields.io/github/forks/alamsyahh15/Crypto-Prices?style=social)](https://github.com/alamsyahh15/Crypto-Prices/fork)&nbsp; [![Star](https://img.shields.io/github/stars/alamsyahh15/Crypto-Prices?style=social)](https://github.com/alamsyahh15/Crypto-Prices/star)&nbsp; [![Watches](https://img.shields.io/github/watchers/alamsyahh15/Crypto-Prices?style=social)](https://github.com/alamsyahh15/Crypto-Prices/)&nbsp;
 
 <pre>
-<img src="screenshot/ss0.png" width="28.5%">     <img src="screenshot/ss1.png" width="30%">     <img src="screenshot/ss2.png" width="30%">
+   <img src="screenshot/ss1.png" width="50%">     <img src="screenshot/ss2.png" width="50%">
 </pre>
 
 CryptoPrices adalah sebuah aplikasi sederhana yang menampilkan daftar harga terupdate asset digital cryptocurrency,dari mulai Bitcoin, Ethereum, Binance, Doge dan lainnya. Serta menampilkan candle stick chart dari interval waktu yang diinginkan.
