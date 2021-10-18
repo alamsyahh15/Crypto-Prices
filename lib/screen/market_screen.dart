@@ -1,7 +1,9 @@
 // ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, unnecessary_string_interpolations
 import 'package:crypto_price/models/coins_model.dart';
+import 'package:crypto_price/screen/asset_item.dart';
 import 'package:crypto_price/screen/candle_screen.dart';
 import 'package:crypto_price/viewmodels/asset_price_provider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -14,12 +16,14 @@ class MarketScreen extends StatefulWidget {
 }
 
 class _MarketScreenState extends State<MarketScreen> {
+  bool isSearch = false;
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => AssetPriceProvider(),
       child: Scaffold(
-        appBar: AppBar(title: Text("Crypto Price")),
+        appBar: buildAppBar(),
         body: SafeArea(
           child: Container(
             child: Consumer<AssetPriceProvider>(
@@ -28,22 +32,28 @@ class _MarketScreenState extends State<MarketScreen> {
                   await priceProv.getAsset();
                   return;
                 },
-                child: priceProv.isLoading
-                    ? Center(child: CircularProgressIndicator())
-                    : SingleChildScrollView(
-                        physics: AlwaysScrollableScrollPhysics(),
-                        child: priceProv.listAsset.isEmpty
-                            ? Center(child: Text(" Server Has Many Request"))
-                            : ListView.builder(
-                                physics: NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: priceProv.listAsset.length,
-                                itemBuilder: (contex, index) {
-                                  final data = priceProv.listAsset[index];
-                                  return AssetItem(data: data);
-                                },
-                              ),
-                      ),
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: priceProv.isLoading
+                          ? Center(child: CircularProgressIndicator())
+                          : priceProv.listAsset.isEmpty
+                              ? Center(child: Text("Data Tidak Ditemukan"))
+                              : SingleChildScrollView(
+                                  physics: AlwaysScrollableScrollPhysics(),
+                                  child: ListView.builder(
+                                    physics: NeverScrollableScrollPhysics(),
+                                    shrinkWrap: true,
+                                    itemCount: priceProv.listAsset.length,
+                                    itemBuilder: (contex, index) {
+                                      final data = priceProv.listAsset[index];
+                                      return AssetItem(data: data);
+                                    },
+                                  ),
+                                ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -51,41 +61,31 @@ class _MarketScreenState extends State<MarketScreen> {
       ),
     );
   }
-}
 
-class AssetItem extends StatelessWidget {
-  final CoinsModel data;
-  const AssetItem({Key? key, required this.data}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      title: Text("${data.symbol}"),
-      subtitle: Text("${data.priceUsd}"),
-      trailing: Container(
-        alignment: Alignment.center,
-        width: 80,
-        height: 30,
-        color: () {
-          if (data.gain != null) {
-            return data.gain == true ? Colors.green : Colors.red;
-          }
-          return Colors.grey.shade400;
-        }(),
-        child: Text(
-          "${double.parse(data.changePercent24Hr).toStringAsFixed(1)} %",
-          style: TextStyle(color: Colors.white),
-        ),
-      ),
-      onTap: () {
-        Navigator.of(context)
-            .push(
-          MaterialPageRoute(builder: (_) => CandleScreen(coinData: data)),
-        )
-            .then((value) {
-          SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-        });
-      },
+  PreferredSizeWidget buildAppBar() {
+    return AppBar(
+      backgroundColor: Colors.white,
+      leading: isSearch
+          ? null
+          : IconButton(
+              onPressed: () => setState(() {
+                isSearch = !isSearch;
+              }),
+              icon: Icon(Icons.search, color: Colors.black),
+            ),
+      title: !isSearch
+          ? Text("Crypto Prices", style: TextStyle(color: Colors.black))
+          : Consumer<AssetPriceProvider>(
+              builder: (context, priceProv, _) => CupertinoSearchTextField(
+                onChanged: (query) {
+                  priceProv.search(query);
+                },
+                onSuffixTap: () => setState(() {
+                  priceProv.search('');
+                  isSearch = !isSearch;
+                }),
+              ),
+            ),
     );
   }
 }

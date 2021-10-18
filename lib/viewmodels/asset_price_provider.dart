@@ -25,6 +25,7 @@ class AssetPriceProvider extends ChangeNotifier {
   bool _mounted = false;
   bool _isLoading = false;
   List<CoinsModel> listAsset = [];
+  List<CoinsModel> bckupListAsset = [];
 
   bool get isLoading => _isLoading;
   set isLoading(bool val) {
@@ -41,9 +42,11 @@ class AssetPriceProvider extends ChangeNotifier {
   }
 
   Future getAsset() async {
+    reset();
     final result = await CoinsRepository.getAsset();
     if (result is List<CoinsModel>) {
       listAsset = result;
+      bckupListAsset.addAll(listAsset);
     }
     notifyListeners();
   }
@@ -78,6 +81,23 @@ class AssetPriceProvider extends ChangeNotifier {
         }
       }
     });
+  }
+
+  void search(String query) {
+    listAsset = bckupListAsset;
+    if (query.isNotEmpty) {
+      query = query.toLowerCase();
+      listAsset = listAsset
+          .where((e) => e.symbol.toLowerCase().contains(query))
+          .toList();
+    }
+    notifyListeners();
+  }
+
+  reset() {
+    listAsset = [];
+    bckupListAsset = [];
+    notifyListeners();
   }
 
   /// ==== Inherited =====

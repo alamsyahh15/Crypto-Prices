@@ -36,7 +36,17 @@ class _CandleScreenState extends State<CandleScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text("${widget.coinData.symbol} / USDT"),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios, color: Colors.black),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+          backgroundColor: Colors.white,
+          title: Text(
+            "${widget.coinData.symbol} / USDT",
+            style: TextStyle(color: Colors.black),
+          ),
         ),
         body: Center(
           child: StreamBuilder(
