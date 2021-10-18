@@ -41,12 +41,13 @@ class AssetChartProvider extends ChangeNotifier {
         value.forEach((e) {
           tempCandles.add(
             Candle(
-                date: DateTime.fromMillisecondsSinceEpoch(e.period),
-                high: e.high,
-                low: e.low,
-                open: e.open,
-                close: e.close,
-                volume: e.volume),
+              date: DateTime.fromMillisecondsSinceEpoch(e.period),
+              high: e.high,
+              low: e.low,
+              open: e.open,
+              close: e.close,
+              volume: e.volume,
+            ),
           );
         });
         candles = tempCandles;
