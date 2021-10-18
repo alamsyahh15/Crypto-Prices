@@ -51,6 +51,12 @@ class AssetPriceProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  initRefresh() async {
+    isLoading = true;
+    await getAsset();
+    isLoading = false;
+  }
+
   void listenData() {
     CoinsRepository.channel.stream.listen((event) {
       final candleProv = Provider.of<AssetChartProvider>(

@@ -37,15 +37,15 @@ class _CandleScreenState extends State<CandleScreen> {
       child: Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios, color: Colors.black),
+            icon: Icon(Icons.arrow_back_ios, color: Colors.white),
             onPressed: () {
               Navigator.pop(context);
             },
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: Color(0xFF1B1C21),
           title: Text(
             "${widget.coinData.symbol} / USDT",
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(color: Colors.white),
           ),
         ),
         body: Center(

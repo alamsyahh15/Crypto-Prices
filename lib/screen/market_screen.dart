@@ -38,7 +38,20 @@ class _MarketScreenState extends State<MarketScreen> {
                       child: priceProv.isLoading
                           ? Center(child: CircularProgressIndicator())
                           : priceProv.listAsset.isEmpty
-                              ? Center(child: Text("Data Tidak Ditemukan"))
+                              ? Center(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text("Data Tidak Ditemukan"),
+                                      MaterialButton(
+                                        color: Colors.grey.shade400,
+                                        textColor: Colors.white,
+                                        child: Text("Refresh"),
+                                        onPressed: priceProv.initRefresh,
+                                      )
+                                    ],
+                                  ),
+                                )
                               : SingleChildScrollView(
                                   physics: AlwaysScrollableScrollPhysics(),
                                   child: ListView.builder(
@@ -64,19 +77,20 @@ class _MarketScreenState extends State<MarketScreen> {
 
   PreferredSizeWidget buildAppBar() {
     return AppBar(
-      backgroundColor: Colors.white,
+      backgroundColor: Color(0xFF1B1C21),
       leading: isSearch
           ? null
           : IconButton(
               onPressed: () => setState(() {
                 isSearch = !isSearch;
               }),
-              icon: Icon(Icons.search, color: Colors.black),
+              icon: Icon(Icons.search, color: Colors.white),
             ),
       title: !isSearch
-          ? Text("Crypto Prices", style: TextStyle(color: Colors.black))
+          ? Text("Crypto Prices", style: TextStyle(color: Colors.white))
           : Consumer<AssetPriceProvider>(
               builder: (context, priceProv, _) => CupertinoSearchTextField(
+                backgroundColor: Colors.white,
                 onChanged: (query) {
                   priceProv.search(query);
                 },
