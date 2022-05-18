@@ -59,9 +59,8 @@ class AssetPriceProvider extends ChangeNotifier {
 
   void listenData() {
     CoinsRepository.channel.stream.listen((event) {
-      final candleProv = Provider.of<AssetChartProvider>(
-          navigatorKey.currentContext!,
-          listen: false);
+      final candleProv =
+          navigatorKey.currentContext!.read<AssetChartProvider>();
       final data = jsonDecode(event) as Map;
       for (var key in data.keys) {
         if (key == candleProv.coinData?.id) {

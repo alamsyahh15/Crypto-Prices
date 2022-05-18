@@ -53,7 +53,8 @@ class _CandleScreenState extends State<CandleScreen> {
             stream: Provider.of<AssetChartProvider>(context, listen: true)
                 .candleStream,
             builder: (context, snapshot) {
-              Provider.of<AssetChartProvider>(context, listen: false)
+              context
+                  .read<AssetChartProvider>()
                   .updateCandlesFromSnapshot(snapshot, widget.coinData);
               return Consumer<AssetChartProvider>(
                 builder: (context, candleProv, _) => Candlesticks(

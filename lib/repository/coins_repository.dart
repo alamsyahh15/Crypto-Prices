@@ -15,21 +15,21 @@ class CoinsRepository {
 
   /// ====== Get Asset ======
   static Future getAsset() async {
-    try {
-      final res = await dio.get(baseUrl + "/assets");
-      log("getAsset Url => ${res.realUri}");
-      if (res.statusCode == 200) {
-        return List<CoinsModel>.from(
-          res.data['data'].map((e) => CoinsModel.fromJson(e)),
-        );
-      }
-      return null;
-    } catch (err) {
-      throw err;
+    // try {
+    final res = await dio.get(baseUrl + "/assets");
+    log("getAsset Url => ${res.realUri}");
+    if (res.statusCode == 200) {
+      return List<CoinsModel>.from(
+        res.data['data'].map((e) => CoinsModel.fromJson(e)),
+      );
     }
+    return null;
+    // } catch (err) {
+    //   throw err;
+    // }
   }
 
-  /// ====== Get Asset ======
+  /// ====== Get Candle ======
   static Future getCandle(
     String? interval,
     String? coinId,

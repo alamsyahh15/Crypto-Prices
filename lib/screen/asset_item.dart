@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_string_interpolations, prefer_const_constructors
+
 import 'package:crypto_price/models/coins_model.dart';
 import 'package:crypto_price/screen/candle_screen.dart';
 import 'package:flutter/material.dart';
@@ -10,8 +12,8 @@ class AssetItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text("${data.symbol}"),
-      subtitle: Text("${data.priceUsd}"),
+      title: Text("${data.symbol} / USD"),
+      subtitle: Text("${data.priceUsd} USD"),
       trailing: Container(
         alignment: Alignment.center,
         width: 80,

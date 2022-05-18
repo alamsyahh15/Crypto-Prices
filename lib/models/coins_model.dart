@@ -2,6 +2,8 @@
 //
 //     final coinsModel = coinsModelFromJson(jsonString);
 
+// ignore_for_file: prefer_if_null_operators
+
 import 'dart:convert';
 
 List<CoinsModel> coinsModelFromJson(String str) =>
@@ -36,7 +38,7 @@ class CoinsModel {
   String volumeUsd24Hr;
   String priceUsd;
   String changePercent24Hr;
-  String vwap24Hr;
+  String? vwap24Hr;
   bool? gain;
 
   factory CoinsModel.fromJson(Map<String, dynamic> json) => CoinsModel(
@@ -50,7 +52,7 @@ class CoinsModel {
         volumeUsd24Hr: json["volumeUsd24Hr"],
         priceUsd: json["priceUsd"],
         changePercent24Hr: json["changePercent24Hr"],
-        vwap24Hr: json["vwap24Hr"],
+        vwap24Hr: json["vwap24Hr"] == null ? null : json["vwap24Hr"],
         gain: null,
       );
 
