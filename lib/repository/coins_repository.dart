@@ -15,7 +15,7 @@ class CoinsRepository {
 
   /// ====== Get Asset ======
   static Future getAsset() async {
-    // try {
+    try {
     final res = await dio.get(baseUrl + "/assets");
     log("getAsset Url => ${res.realUri}");
     if (res.statusCode == 200) {
@@ -24,9 +24,9 @@ class CoinsRepository {
       );
     }
     return null;
-    // } catch (err) {
-    //   throw err;
-    // }
+    } catch (err) {
+      throw err;
+    }
   }
 
   /// ====== Get Candle ======
